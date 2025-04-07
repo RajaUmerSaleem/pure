@@ -12,13 +12,13 @@ export default function Home() {
   };
 
   const handleScanError = (error) => {
-    console.error("QR Code scan error:", error); // Log errors during scanning
+    console.error("QR Code scan error:", error); 
   };
 
   useEffect(() => {
     const scanner = new Html5QrcodeScanner("qr-reader", {
       fps: 10, // Frames per second
-      qrbox: { width: 250, height: 250 }, // Size of the scanning box
+      qrbox: { width: 250, height: 250 }, 
     });
 
     scanner.render(handleScanSuccess, handleScanError);
@@ -26,7 +26,7 @@ export default function Home() {
     return () => {
       scanner.clear(); // Cleanup the scanner when the component unmounts
     };
-  }, []);
+  }, []); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,13 +35,13 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
-      <h1 className="text-3xl font-bold text-blue-600 mb-6">PureVerify</h1>
+      <h1 className="text-3xl font-bold text-blue-600 mb-6">PureVerify &reg;</h1>
 
       {/* QR Code Scanner */}
-      <div id="qr-reader" className="w-80 h-80 border mb-4"></div>
+      <div id="qr-reader" className="w-80 h-80 border mb-4 "></div>
 
       {/* Manual Input */}
-      <form onSubmit={handleSubmit} className="mt-4">
+      <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-1">
         <input
           type="text"
           placeholder="Enter QR Code"
@@ -49,7 +49,7 @@ export default function Home() {
           onChange={(e) => setManualCode(e.target.value)}
           className="border p-2 rounded w-64"
         />
-        <button type="submit" className="ml-2 bg-blue-500 text-white px-4 py-2 rounded">
+        <button type="submit" className="m-2 bg-blue-500 text-white px-4 py-2 rounded">
           Submit
         </button>
       </form>

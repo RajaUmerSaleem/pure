@@ -32,34 +32,33 @@ export default function Admin() {
         <input className="border p-2 m-2" placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)} />
         <input className="border p-2 m-2" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
         
+        
         {/* Image Selection Grid */}
-        <div className="grid grid-cols-4 gap-4 p-4">
-          {[
-            '/halfliter.jpg',
-            '/onehalf.jpg',
+          <div className=" flex justify-center items-center gap-4 p-4  w-full md:w-1/2 lg:w-1/3 overflow-scroll  overflow-y-hidden">
+            {[
+              '/halfliter.jpg',
+              '/onehalf.jpg',
             // Add more image paths as needed
-          ].map((img, index) => (
+            ].map((img, index) => (
             <div 
               key={index} 
-              className={`cursor-pointer border-2 p-2 ${image === img ? 'border-blue-500' : 'border-gray-200'}`}
+              className={`cursor-pointer border-2 p-2 min-w-[128px] flex-shrink-0 ${image === img ? 'border-blue-500' : 'border-gray-200'}`}
               onClick={() => setImage(img)}
             >
               <Image 
-                src={img} 
-                alt={`Option ${index + 1}`}
-                width={128}
-                height={128}
-                className="w-full h-32 object-cover"
+              src={img} 
+              alt={`Option ${index + 1}`}
+              width={128}
+              height={128}
+              className="w-32 h-32 object-cover"
               />
             </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <input type="number" className="border p-2 m-2" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} />
-
-        <button className="bg-green-500 text-white p-2 rounded" onClick={handleGenerate}>Generate QR Codes</button>
-
-        {/* QR Code Display */}
+          <input type="number" className="border p-2 m-2" value={quantity || ''} onChange={(e) => setQuantity(e.target.value ? parseInt(e.target.value) : 1)} />
+          <button className="bg-green-500 text-white p-2 rounded" onClick={handleGenerate}>Generate QR Codes</button>
+          {/* QR Code Display */}
       <div className="grid grid-cols-2 gap-4 mt-4">
         {qrCodes.map((code, index) => (
           <div key={index} className="bg-white p-4 border rounded">
